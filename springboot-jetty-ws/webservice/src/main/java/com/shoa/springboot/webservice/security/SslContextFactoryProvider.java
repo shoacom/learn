@@ -2,7 +2,6 @@ package com.shoa.springboot.webservice.security;
 
 import static com.shoa.springboot.webservice.Constants.*;
 
-import com.shoa.springboot.webservice.security.CipherSuites;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 /**
