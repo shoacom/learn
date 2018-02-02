@@ -8,6 +8,7 @@ import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.SslConnectionFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -18,6 +19,12 @@ public class WebConnectorManager {
   private static final int PORT_TLS = 8443;
   private static final int PORT_HTTP = 8080;
   private Server server;
+  @Value("${spring.arg.myname:shoa}")
+  private String myName;
+
+  WebConnectorManager() {
+    System.out.println(myName);
+  }
 
   public void initialize(Server server) {
     this.server = server;

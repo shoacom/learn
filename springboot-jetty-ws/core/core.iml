@@ -11,6 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="restful" />
     <orderEntry type="module" module-name="webservice" />
     <orderEntry type="library" name="Maven: org.apache.cxf:cxf-spring-boot-starter-jaxws:3.1.11" level="project" />
     <orderEntry type="library" name="Maven: org.apache.cxf:cxf-spring-boot-autoconfigure:3.1.11" level="project" />
@@ -34,7 +35,6 @@
     <orderEntry type="library" name="Maven: org.apache.cxf:cxf-rt-ws-policy:3.1.11" level="project" />
     <orderEntry type="library" name="Maven: org.apache.neethi:neethi:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.cxf:cxf-rt-transports-http:3.1.11" level="project" />
-    <orderEntry type="module" module-name="restful" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:1.5.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:1.5.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:1.5.0.RELEASE" level="project" />
