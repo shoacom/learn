@@ -19,7 +19,6 @@ public class SslContextFactoryProvider extends SslContextFactory {
   public SslContextFactoryProvider() {
     File file = new File(KEYSTORE_PATH);
     LOGGER.info("Keystore path: " + file.getAbsolutePath());
-
     setKeyManagerPassword(KEYSTORE_PASS);
     setTrustStorePath(KEYSTORE_PATH);
     setTrustStorePassword(KEYSTORE_PASS);
