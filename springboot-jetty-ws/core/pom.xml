@@ -31,11 +31,11 @@
             <!-- 控制资源文件的拷贝 -->
             <resource>
                 <directory>src/main/resources</directory>
-                <targetPath>${project.build.directory}</targetPath>
+                <targetPath>${project.build.directory}/${project.build.finalName}_home/conf/</targetPath>
             </resource>
             <resource>
                 <directory>src/main/resources/keystore</directory>
-                <targetPath>${project.build.directory}/../${project.build.finalName}_home/conf/keystore</targetPath>
+                <targetPath>${project.build.directory}/${project.build.finalName}_home/conf/keystore</targetPath>
             </resource>
         </resources>
         <plugins>

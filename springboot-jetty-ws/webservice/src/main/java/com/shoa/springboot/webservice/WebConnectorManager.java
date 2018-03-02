@@ -14,10 +14,12 @@ import java.util.Arrays;
 
 @Component
 public class WebConnectorManager {
-  private static final String HOST_V4 = "localhost";
-  private static final int PORT_TLS = 8443;
-  private static final int PORT_HTTP = 8080;
   private Server server;
+  private WebServiceProperty webServiceProperty;
+
+  public WebConnectorManager(WebServiceProperty webServiceProperty) {
+    this.webServiceProperty = webServiceProperty;
+  }
 
   public void initialize(Server server) {
     this.server = server;
@@ -27,34 +29,36 @@ public class WebConnectorManager {
     return Arrays.stream(server.getConnectors())
         .filter(connector -> connector instanceof ServerConnector).map(connector -> (ServerConnector) connector)
         .filter(serverConnector -> serverConnector.getPort() == port && host.equals(serverConnector.getHost()))
-        .findAny().orElse(createConnector(host, port));
+        .findAny().orElse(createServerConnector(host, port));
   }
 
-  private ServerConnector createConnector(String host, int port) {
-    return port == 8443 ? createHttpsConnector(host) : createHttpConnector(host);
+  private ServerConnector createServerConnector(String host, int port) {
+    final ServerConnector serverConnector;
+    if (port == webServiceProperty.getHttpsPort()) {
+      serverConnector = new ServerConnector(server,
+          new SslConnectionFactory(new SslContextFactoryProvider(), HttpVersion.HTTP_1_1.asString()),
+          new HttpConnectionFactory(new HttpConfigurationProvider(true)));
+    } else {
+      serverConnector = new ServerConnector(server,
+          new HttpConnectionFactory(new HttpConfigurationProvider()));
+    }
+
+    serverConnector.setHost(host);
+    serverConnector.setPort(port);
+    server.addConnector(serverConnector);
+    return serverConnector;
   }
 
-  private ServerConnector createHttpConnector(String host) {
-    ServerConnector connector = new ServerConnector(server,
-        new HttpConnectionFactory(new HttpConfigurationProvider()));
-    connector.setHost(host);
-    connector.setPort(8080);
-    return connector;
-  }
 
-
-  private ServerConnector createHttpsConnector(String host) {
-    ServerConnector connector = new ServerConnector(server,
-        new SslConnectionFactory(new SslContextFactoryProvider(), HttpVersion.HTTP_1_1.asString()),
-        new HttpConnectionFactory(new HttpConfigurationProvider(true)));
-    connector.setPort(8443);
-    connector.setHost(host);
-    return connector;
-  }
-
-  public void start() throws Exception {
-    getHttpConnector(HOST_V4, PORT_TLS).start();
-    getHttpConnector(HOST_V4, PORT_HTTP).start();
+  public void start() {
+    webServiceProperty.getIpAddresss().forEach(inetAddress -> {
+      try {
+        getHttpConnector(inetAddress.getHostAddress(), webServiceProperty.getHttpPort()).start();
+        getHttpConnector(inetAddress.getHostAddress(), webServiceProperty.getHttpsPort()).start();
+      } catch (Exception e) {
+        throw new ConnectorException("Connector start failed!", e);
+      }
+    });
   }
 
 

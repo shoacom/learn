@@ -5,9 +5,11 @@ import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.SecuredRedirectHandler;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.FileSystemResource;
 
 import java.util.Arrays;
 
@@ -16,6 +18,14 @@ import java.util.Arrays;
  */
 @Configuration
 public class AppConfig {
+
+  @Bean
+  public PropertyPlaceholderConfigurer placeholderConfigurer() {
+    PropertyPlaceholderConfigurer placeholderConfigurer = new PropertyPlaceholderConfigurer();
+    placeholderConfigurer.setLocation(new FileSystemResource(System.getProperty("springbootws.home")
+        + "conf/application.properties"));
+    return placeholderConfigurer;
+  }
 
   @Bean
   public JettyEmbeddedServletContainerFactory jettyEmbeddedServletContainerFactory(WebConnectorManager
