@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<raml>
+    <cmData type="actual">
+        <header>
+            <log dateTime="" action=""/>
+        </header>
+        <managedObject class="SWProvision"
+                       operation="create" distName="/PLMN-1/MRBTS-1/SWProvision-1">
+            <objectQueue name="softwareObjects">
+                <item>
+                    <p name="swSize">72528896</p>
+                    <p name="packageURL">http://netact.url/ScfUpgrade_linux64.txz</p>
+                    <p name="packageVersion">QX15.15</p>
+                </item>
+                <item>
+                    <p name="swSize">72528822</p>
+                    <p name="packageURL">http://netact.url/IMPlugin.jar</p>
+                    <p name="packageVersion">QX15.15</p>"
+                </item>
+                <item>
+                    <p name="swSize">72528822</p>
+                    <p name="packageURL">http://netact.url/ScfValidator_win32.txz</p>
+                    <p name="packageVersion">QX15.15</p>"
+                </item>
+                <item>
+                    <p name="swSize">72528822</p>
+                    <p name="packageURL">http://netact.url/TargetBD_020.xml</p>
+                    <p name="packageVersion">QX15.15</p>
+                </item>
+                <item>
+                    <p name="swSize">72528822</p>
+                    <p name="packageURL">http://netact.url/SCFD.xml</p>
+                    <p name="packageVersion">QX15.15</p>
+                </item>
+                <item>
+                    <p name="swSize">0</p>
+                    <p name="packageURL">http://netact.url/AdaptationVersions.xml</p>
+                    <p name="packageVersion">QX15.15</p>
+                    <p name="checksumType">0</p>
+                    <p name="checksumValue">d41d8cd98f00b204e9800998ecf8427e</p>
+                </item>
+            </objectQueue>
+            <p name="User">UserName</p>
+            <p name="Password">PasswordValue</p>
+        </managedObject>
+
+    </cmData>
+</raml>
