@@ -1,0 +1,32 @@
+<configuration>
+    <property name="PATTERN" value="%date %level [%thread] %logger{10} [%file:%line] %msg%n"/>
+    <!-- lang: xml-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>log/tape.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="MonitorFile" class="ch.qos.logback.core.FileAppender">
+        <file>log/monitor.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="com.shoa.queue.task.Monitor" level="DEBUG">
+        <appender-ref ref="MonitorFile"/>
+    </logger>
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>

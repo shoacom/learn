@@ -1,0 +1,20 @@
+# Maven template
+target/
+
+# Java template
+*.class
+
+# IDE specified files, such as Inteliji IDEA, Eclipse
+.idea
+*.iml
+.project
+.settings
+.classpath
+
+# Package Files
+# *.jar
+*.war
+*.ear
+
+
+
